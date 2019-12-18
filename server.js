@@ -26,24 +26,37 @@ app.get("/notes", function(req, res) {
 
 
 // This saves the notes
+notes = [];
 app.post("/api/notes", function (req, res) {
-  let newnote = req.body;
-  title = newnote.title;
-  text = newnote.text;
-  fs.readFile(__dirname + '/db/db.json', 'utf8', (err, data) => {
-    if (err) { 
-      throw err 
+    json = path.join(__dirname, "/db/db.json");
+    newNote = req.body;
+
+    function getJSON() {
+        fs.readFile(json, "utf8", function (err, res) {
+            if (err) {
+                console.log(err);
+            }
+            notes = JSON.parse(response)
+            writeJSON();
+        });
+    } getJSON()
+
+    function writeJSON() {
+        notes.push(newNote)
+        for (let i = 0; i < notes.length; i++) {
+            note = notes[i]
+            note.id = i + 1
+        }
+        fs.writeFile(json, JSON.stringify(notes), function (err) {
+
+            if (err) {
+                return console.log(err);
+            }
+            console.log("Your note was saved!");
+        });
     }
-    noteObj = JSON.parse(data);
-    id = getId();
-    noteObj.push({ title, text, id: id });
-    fs.writeFile(__dirname + '/db/db.json', JSON.stringify(noteObj), (err) => {
-      if (err) { 
-        throw err 
-      }
-    })
-    return res.json(JSON.parse(data))
-  })
+    res.sendFile(path.join(__dirname, "/db/db.json"));
+
 });
 
   // This deletes the notes

@@ -1,10 +1,11 @@
 {
   "name": "note-taker",
   "version": "1.0.0",
-  "description": "",
+  "description": "Homework #11",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "",
   "license": "ISC",
@@ -13,5 +14,14 @@
     "fs": "0.0.1-security",
     "mysql": "^2.16.0",
     "path": "^0.12.7"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dsorthep/note-taker.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Dsorthep/note-taker/issues"
+  },
+  "homepage": "https://github.com/Dsorthep/note-taker#readme"
 }
