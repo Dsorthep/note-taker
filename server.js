@@ -36,7 +36,7 @@ app.post("/api/notes", function (req, res) {
             if (err) {
                 console.log(err);
             }
-            notes = JSON.parse(response)
+            notes = JSON.parse(res)
             writeJSON();
         });
     } getJSON()
@@ -62,7 +62,7 @@ app.post("/api/notes", function (req, res) {
   // This deletes the notes
   app.delete("/api/notes/:id", function (req, res) {
     let id = req.params.id;
-    fs.readFile(__dirname + '/db/db.json', 'utf8', (err, data) => {
+    fs.readFile(__dirname + "db/db.json", "utf8", (err, data) => {
       let noteObj = JSON.parse(data);
       console.log(noteObj)
       for (i = 0; i < noteObj.length - 1; i++) {
@@ -71,7 +71,7 @@ app.post("/api/notes", function (req, res) {
         }
         noteObj.splice(i, 1);
       }
-      fs.writeFile('db/db.json',"utf8", noteObj, (err) => {
+      fs.writeFile("/db/db.json","utf8", noteObj, (err) => {
         if (err) {
           throw err
         }
